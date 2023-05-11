@@ -3,25 +3,25 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, simpledialog
 from collections import defaultdict
 
-
 global semaines
 # un cavalier n'aura pas le meme cheval pendant X semaines
 semaines = 6
 
 def ajouter_manuellement():
+	historique = lire_historique(historique_file.get())
 	cavalier = simpledialog.askstring("Ajouter manuellement", "Entrez le nom du cavalier:")
 	cheval = simpledialog.askstring("Ajouter manuellement", "Entrez le nom du cheval:")
 	
 	if cavalier and cheval:
+		print(f'cavalier = {cavalier}')
 		if cavalier not in historique:
 			historique[cavalier] = [cheval]
 		else:
 			historique[cavalier].append(cheval)
-
+		messagebox.showinfo("Succès", f"{cheval} a été ajouté manuellement pour {cavalier} dans l'historique.")
 		with open(historique_file.get(), 'w') as f:
 			for cavalier, chevaux in historique.items():
 				f.write(f'{cavalier}:{",".join(chevaux)}\n')
-		messagebox.showinfo("Succès", f"{cheval} a été ajouté manuellement pour {cavalier} dans l'historique.")
 	else:
 		messagebox.showerror("Erreur", "Veuillez entrer le nom du cavalier et du cheval.")
 
