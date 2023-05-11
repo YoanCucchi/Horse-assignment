@@ -270,5 +270,3 @@ tree.grid(row=6, column=0, columnspan=5, pady=10)
 
 app.protocol("WM_DELETE_WINDOW", app.quit)
 app.mainloop()
-#load_cavaliers()
-#main()
