@@ -46,21 +46,6 @@ def taille_compatibles(taille_cheval, taille_cavalier):
 			return True
 	return False
 
-def candidats_pour_cavalier(cavalier):
-	_, cavalier_taille, _, _ = cavalier
-	candidats = []
-
-	for cheval in chevaux:
-		cheval_nom, cheval_taille = cheval
-		if taille_compatibles(cheval_taille, cavalier_taille):
-			candidats.append(cheval_nom)
-
-	for cheval_precedent in historique.get(cavalier[0], [])[-semaines:]:
-		if cheval_precedent in candidats:
-			candidats.remove(cheval_precedent)
-	
-	return candidats
-
 def candidats_pour_cavalier(cavalier, semaines_restriction):
 	_, cavalier_taille, _, _ = cavalier
 	candidats = []
