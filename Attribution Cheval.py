@@ -67,7 +67,6 @@ def attribution(chevaux, cavaliers, historique):
 	while cavaliers_restants:
 		candidats_par_cavalier = [(cavalier, candidats_pour_cavalier(cavalier, semaines)) for cavalier in cavaliers_restants]
 		cavaliers_tries = sorted(candidats_par_cavalier, key=lambda x: len(x[1]))
-
 		cavalier, candidats = cavaliers_tries[0]
 		cavalier_nom, cavalier_taille, cavalier_jour, cavalier_créneau = cavalier
 
@@ -166,7 +165,7 @@ def display_cavaliers():
 				else:
 					sticky_value = 'e'
 				check_button = tk.Checkbutton(cavalier_frame, text=f"{nom}", variable=check_var)
-				check_button.grid(row=row_index + i // 8, column=jour_col * 9 + i % 8, sticky=sticky_value, padx=0)  # Modifié ici
+				check_button.grid(row=row_index + i // 8, column=jour_col * 9 + i % 8, sticky=sticky_value, padx=0)
 				cavalier_vars.append(check_var)
 				displayed_cavaliers.append(cavalier)
 				i += 1
@@ -198,6 +197,9 @@ def display_attribution(attribution_courante):
 	tree.delete(*tree.get_children())
 	for cavalier, cheval in attribution_courante.items():
 		tree.insert("", "end", values=(cavalier[0], cheval[0]))
+
+	for var in cavalier_vars:
+		var.set(False)
 
 def sauvegarder_noms_cavaliers(attribution_courante):
 	# Charger le fichier Excel existant
