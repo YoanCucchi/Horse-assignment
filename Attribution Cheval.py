@@ -187,7 +187,12 @@ def main():
 	except FileNotFoundError:
 		historique = {}
 
+
+	check_button = tk.Checkbutton(cavalier_frame, text=f"{nom}", variable=check_var)
+	check_button.grid(row=row_index + i // 8, column=jour_col * 9 + i % 8, sticky=sticky_value, padx=0)
+ 
 	cavaliers_a_traiter = [c for c, var in zip(displayed_cavaliers, cavalier_vars) if var.get()]
+	print(cavaliers_a_traiter)
 	attribution_courante = attribution(chevaux, cavaliers_a_traiter, historique)
 	sauvegarder_noms_cavaliers(attribution_courante)
 	display_attribution(attribution_courante)
